@@ -6,7 +6,7 @@ public class SpawnManager : MonoBehaviour {
 
 	public int maxPlatforms = 20;
 	public GameObject platform;
-	public float horizontalMin = 6.5;
+	public float horizontalMin = 6.5f;
 	public float horizontalMax = 14f;
 	public float verticalMin = -5f;
 	public float verticalMax = 5f;
@@ -15,18 +15,18 @@ public class SpawnManager : MonoBehaviour {
 
 
 	// Use this for initialization
-	void Start () {
+	void Start() {
 
 		originPosition = transform.position;
-		Spawn ();
+		Spawn();
 
 	}
 	
 	void Spawn()
 	{
-		for (int = 0; i < maxPlatforms; i++);
+		for (int i = 0; i < maxPlatforms; i++)
 		{
-			Vector2 randomPosition = originalPosition + new Vector2 (Random.Range(horizontalMin, horizontalMax), Random.Range(verticalMin, verticalMax));
+			Vector2 randomPosition = originPosition + new Vector2 (Random.Range(horizontalMin, horizontalMax), Random.Range(verticalMin, verticalMax));
 			Instantiate(platform, randomPosition, Quaternion.identity);
 			originPosition = randomPosition;
 		}

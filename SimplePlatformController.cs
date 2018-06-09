@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SimplePlatformController : MonoBehaviour {
 
@@ -10,16 +11,23 @@ public class SimplePlatformController : MonoBehaviour {
 	public float moveForce = 365f;
 	public float maxSpeed = 5f;
 	public float jumpForce = 1000f;
+	public float Vector3;
 	public Transform groundCheck;
+	public LevelManager theLevelManager;
 
+
+	private int count;
 	private bool grounded = false;
 	private Animator anim;
 	private Rigidbody2D rb2d;
+	private Text winText;
 
 	// Use this for initialization
 	void Awake () {
 		anim = GetComponent<Animator> ();
 		rb2d = GetComponent<Rigidbody2D> ();
+		theLevelManager = FindObjectOfType<LevelManager> ();
+
 	}
 	
 	// Update is called once per frame
@@ -41,13 +49,16 @@ public class SimplePlatformController : MonoBehaviour {
 
 		anim.SetFloat ("Speed", Mathf.Abs (h));
 
-		if (h * rb2d.velocity.x < maxSpeed)
-			rb2d.AddForce (Vector2 * h * moveForce);
-		if (Mathf.Abs (rb2d.velocity.x) > maxSpeed
-			(rb2d.velocity = new Vector2 (Mathf.Sign(rb2d.velocity.x) * maxSpeed, (rb2d.velocity.y)));
+		if (h * rb2d.velocity.x < maxSpeed) {
+			rb2d.AddForce (Vector2.right * h * moveForce);
+		
+		}
+		if (Mathf.Abs (rb2d.velocity.x) > maxSpeed)
+		{	rb2d.velocity = new Vector2 (Mathf.Sign(rb2d.velocity.x) * maxSpeed, (rb2d.velocity.y));
+			}
 		if (h > 0 && !facingRight)
 			Flip();
-			else if (h < 0 && facingRight)
+		else if (h < 0 && facingRight)
 			Flip();
 
 			if (jump)
@@ -61,8 +72,9 @@ public class SimplePlatformController : MonoBehaviour {
 
 	void Flip ()
 	{
-		facingRight = !facingRight
-					Vector3 theScale = transform.localScale;
+		facingRight = !facingRight;
+			Vector3 theScale = (transform.localScale);
+
 		theScale.x *= -1;
 		transform.localScale = theScale;
-
+	}}
